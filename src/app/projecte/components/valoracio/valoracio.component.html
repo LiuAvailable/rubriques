@@ -1,4 +1,4 @@
-<form [formGroup]="valoracioForm">
+<form [formGroup]="valoracioForm" (ngSubmit)="addValoracio()">
     <select>
         <option *ngFor="let criteri of this.criteris">{{criteri.nom}}</option>
     </select>

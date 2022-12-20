@@ -29,4 +29,17 @@ export class ValoracioComponent implements OnInit {
       this.criteris = JSON.parse(criteris);
     }
   }
+  addValoracio(){
+    let criteris = localStorage.getItem('criteris');
+    let nomCriteri = this.valoracioForm.get('valoracio')?.value
+    if(criteris != null){
+      criteris = JSON.parse(criteris);
+      let criteri = this.criteriAModificar();
+      
+    }
+  }
+  //recursiva, comprova en quina posicio està el criteri a modificar
+  criteriAModificar(){
+
+  }
 }
