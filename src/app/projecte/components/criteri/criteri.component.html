@@ -1,3 +1,11 @@
-<h4>Criteri</h4>
+<!--<h4>Criteri</h4>
 <label>Nom:</label><input type="text" [(ngModel)]="this.criteri.nom">
-<button (click)="addCriteri()">Eviar</button>
+<button (click)="addCriteri()">Eviar</button>-->
+
+
+<form [formGroup]="criteriForm" (ngSubmit)="addCriteri()">
+    <h4>Criteri</h4>
+    <label>Nom:</label>
+    <input type="text" formControlName="nom">
+    <button [disabled]="!this.criteriForm.valid">Registrar</button>
+  </form>

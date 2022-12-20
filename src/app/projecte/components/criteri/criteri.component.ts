@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Criteri } from '../../model/entitats/implementacions/criteri/criteri';
-import { Valoracio } from '../../model/entitats/implementacions/valoracio/valoracio';
 
 @Component({
   selector: 'app-criteri',
@@ -10,7 +9,7 @@ import { Valoracio } from '../../model/entitats/implementacions/valoracio/valora
 })
 export class CriteriComponent implements OnInit {
   valoracioForm!:FormGroup;
-  criteri:Criteri = new Criteri();
+  criteriForm!: FormGroup;
 
   constructor(private fb:FormBuilder) { }
 
@@ -18,28 +17,27 @@ export class CriteriComponent implements OnInit {
     let getItem = localStorage.getItem('criteris');
     if(getItem != null){
       let array = JSON.parse(getItem);
-      array.push(this.criteri);
+      array.push(new Criteri(this.criteriForm.get("nom")?.value));
       array = JSON.stringify(array)
       localStorage.setItem('criteris', array);
     }
     else{
-      const array = [this.criteri];
+      const array = [new Criteri(this.criteriForm.get("nom")?.value)];
       const arrayString = JSON.stringify(array);
       localStorage.setItem('criteris', arrayString);
     }
   }
 
   ngOnInit(): void {
-    this.valoracioForm = this.fb.group({
-      codi:['',
+    this.criteriForm = this.fb.group({
+      nom:['',
     {
       validators:[
         Validators.required,
         Validators.minLength(5),
-        Validators.maxLength(8),
+        Validators.maxLength(8)
       ]
-    }],
-    })
+    }]})
   }
 
 }
