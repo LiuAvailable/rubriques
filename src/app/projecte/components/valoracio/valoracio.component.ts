@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Criteri } from '../../model/entitats/implementacions/criteri/criteri';
 
 @Component({
@@ -8,10 +9,19 @@ import { Criteri } from '../../model/entitats/implementacions/criteri/criteri';
 })
 export class ValoracioComponent implements OnInit {
   criteris!:Array<Criteri>;
-  constructor() { }
+  valoracioForm!:FormGroup;
+  constructor(private fb:FormBuilder) { }
 
   ngOnInit(): void {
     this.getCriteris()
+    this.valoracioForm = this.fb.group({
+      valoracio:['',
+    {
+      validators:[
+        Validators.required,
+        Validators.minLength(5)
+      ]
+    }]})
   }
   getCriteris(){
     let criteris = localStorage.getItem('criteris');

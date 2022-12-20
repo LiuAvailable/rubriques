@@ -1,3 +1,7 @@
-<select>
-    <option *ngFor="let criteri of this.criteris" >{{criteri.nom}}</option>
-</select>
+<form [formGroup]="valoracioForm">
+    <select>
+        <option *ngFor="let criteri of this.criteris">{{criteri.nom}}</option>
+    </select>
+    <br><label>valoracio: </label><input type="text" formControlName="valoracio">
+    <br><button [disabled]="!this.valoracioForm.valid">Inserir</button>
+  </form>

@@ -8,7 +8,6 @@ import { Criteri } from '../../model/entitats/implementacions/criteri/criteri';
   styleUrls: ['./criteri.component.css']
 })
 export class CriteriComponent implements OnInit {
-  valoracioForm!:FormGroup;
   criteriForm!: FormGroup;
 
   constructor(private fb:FormBuilder) { }
@@ -35,7 +34,7 @@ export class CriteriComponent implements OnInit {
       validators:[
         Validators.required,
         Validators.minLength(5),
-        Validators.maxLength(8)
+        Validators.maxLength(25)
       ]
     }]})
   }
