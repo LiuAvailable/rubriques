@@ -10,18 +10,23 @@ import { Valoracio } from '../../model/entitats/implementacions/valoracio/valora
 })
 export class CriteriComponent implements OnInit {
   valoracioForm!:FormGroup;
-  nom!:string;
-  valoracio:Valoracio = new Valoracio();
-  criteri!:Criteri;
+  criteri:Criteri = new Criteri();
 
   constructor(private fb:FormBuilder) { }
+
   addCriteri(){
-    this.criteri = new Criteri(this.nom);
-    console.log(this.criteri);
-  }
-  addValoracio(){
-    this.criteri.afegirValoracio(this.valoracio);
-    console.log(this.criteri);
+    let getItem = localStorage.getItem('criteris');
+    if(getItem != null){
+      let array = JSON.parse(getItem);
+      array.push(this.criteri);
+      array = JSON.stringify(array)
+      localStorage.setItem('criteris', array);
+    }
+    else{
+      const array = [this.criteri];
+      const arrayString = JSON.stringify(array);
+      localStorage.setItem('criteris', arrayString);
+    }
   }
 
   ngOnInit(): void {

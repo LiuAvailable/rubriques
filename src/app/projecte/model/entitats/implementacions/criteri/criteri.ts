@@ -5,8 +5,7 @@ export class Criteri implements ICriteri{
     puntuacio: Array<IValoracio> = []
     nom!: string;
 
-    constructor(nom: string){
-        this.nom = nom;
+    constructor(){
     }
 
     afegirValoracio(valoracio: IValoracio): void {
