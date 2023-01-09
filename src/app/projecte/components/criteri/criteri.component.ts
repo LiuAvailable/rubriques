@@ -11,7 +11,17 @@ export class CriteriComponent implements OnInit {
   criteriForm!: FormGroup;
 
   constructor(private fb:FormBuilder) { }
-
+  ngOnInit(): void {
+    this.criteriForm = this.fb.group({
+      nom:['',
+    {
+      validators:[
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(25)
+      ]
+    }]})
+  }
   addCriteri(){
     let getItem = localStorage.getItem('criteris');
     if(getItem != null){
@@ -25,18 +35,12 @@ export class CriteriComponent implements OnInit {
       const arrayString = JSON.stringify(array);
       localStorage.setItem('criteris', arrayString);
     }
+    this.removeInputValue();
   }
-
-  ngOnInit(): void {
-    this.criteriForm = this.fb.group({
-      nom:['',
-    {
-      validators:[
-        Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(25)
-      ]
-    }]})
+  removeInputValue(){
+    let input = document.querySelector('input');
+    if(input != null){
+      input.value = '';
+    }
   }
-
 }

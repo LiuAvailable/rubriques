@@ -34,12 +34,17 @@ export class ValoracioComponent implements OnInit {
     let nomCriteri = this.valoracioForm.get('valoracio')?.value
     if(criteris != null){
       criteris = JSON.parse(criteris);
-      let criteri = this.criteriAModificar();
-      
+      this.modificarcriteri();
     }
   }
-  //recursiva, comprova en quina posicio està el criteri a modificar
-  criteriAModificar(){
-
+  modificarcriteri(){
+    let nomCriteri = document.querySelector('select');
+    if(nomCriteri !=null){
+      let contador = -1;
+      do{
+        contador ++;
+      }while(nomCriteri.value != this.criteris[contador]['nom']);
+      console.log(contador);
+    }
   }
 }

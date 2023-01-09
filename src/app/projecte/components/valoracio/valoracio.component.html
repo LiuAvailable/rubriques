@@ -1,5 +1,5 @@
 <form [formGroup]="valoracioForm" (ngSubmit)="addValoracio()">
-    <select>
+    <label>criteri:</label><select>
         <option *ngFor="let criteri of this.criteris">{{criteri.nom}}</option>
     </select>
     <br><label>valoracio: </label><input type="text" formControlName="valoracio">
