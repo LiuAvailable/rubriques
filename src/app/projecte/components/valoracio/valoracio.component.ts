@@ -12,10 +12,11 @@ import { Valoracio } from '../../model/entitats/implementacions/valoracio/valora
 export class ValoracioComponent implements OnInit {
   localStorage:LocalStorage = new LocalStorage();
   valoracioForm!:FormGroup;
-  criteriSelected:string = '';
+  criterisName!:Array<Criteri>;
   constructor(private fb:FormBuilder) { }
 
   ngOnInit(): void {
+    this.criterisName = this.localStorage.getCriteris();
     this.valoracioForm = this.fb.group({
       valoracio:['',
       {
