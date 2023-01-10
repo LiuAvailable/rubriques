@@ -25,7 +25,7 @@ export class CriteriComponent implements OnInit {
     }]})
   }
   addCriteri(){
-    this.localStorage.saveCriteri(this.criteriForm.get("nom")?.value);
+    this.localStorage.saveCriteri(new Criteri(this.criteriForm.get("nom")?.value));
     this.removeInputValue();
   }
   removeInputValue(){

@@ -43,7 +43,8 @@ export class ValoracioComponent implements OnInit {
     let nomCriteri = document.querySelector('select');
     if(nomCriteri!=null){
       let criteri = this.localStorage.getCriteri(nomCriteri.value);
-      console.log(criteri.nom);
+      criteri.puntuacio.push(valoracio);
+      this.localStorage.saveCriteri(criteri);
     }
   }
 

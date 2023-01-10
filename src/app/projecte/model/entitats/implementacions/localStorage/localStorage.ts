@@ -18,15 +18,29 @@ export class LocalStorage{
         return this.criteris[this.loopInCriteris(nom)-1];
     }
 
-    public saveCriteri(nom:string){
-        if(this.criteriExists(nom)){
-            this.criteris.push(new Criteri(nom));
+    public saveCriteri(criteri:Criteri){
+        if(this.criteriExists(criteri.nom)){
+            console.log('bbb')
+            this.criteris.push(new Criteri(criteri.nom));
             this.setCriteris();
-        } // TODO: en cas que existeixi remplaça?
+        }else{
+            console.log('aaaa')
+            console.log(criteri.nom)
+            let posicio = this.loopInCriteris(criteri.nom)-1;
+            console.log(criteri)
+            console.log(posicio)
+            console.log(this.criteris[posicio])
+            this.criteris[posicio] = criteri;
+            this.setCriteris()
+        }
     }
     private criteriExists(nom:string){
-        if(this.loopInCriteris(nom) > this.criteris.length) return false;
-        else return true;
+        console.log('-----')
+        console.log(this.loopInCriteris(nom))
+        console.log(this.criteris.length)
+        console.log('-----')
+        if(this.criteris.length == 0 || this.loopInCriteris(nom) > this.criteris.length) return true;
+        else return false;
     }
 
     /* Busca un criteri en concret
@@ -40,6 +54,7 @@ export class LocalStorage{
                 if(this.criteris[contador].nom.toLowerCase() == nom.toLowerCase()) trobat = false;
                 contador++;
             }
+            if(trobat) contador ++; //si no l'ha trobat suma
         }else contador = -1;
         return contador;
     }
