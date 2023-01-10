@@ -25,7 +25,7 @@ export class LocalStorage{
         } // TODO: en cas que existeixi remplaça?
     }
     private criteriExists(nom:string){
-        if(this.loopInCriteris(nom) == this.criteris.length) return false;
+        if(this.loopInCriteris(nom) > this.criteris.length) return false;
         else return true;
     }
 
@@ -34,7 +34,7 @@ export class LocalStorage{
     */
     private loopInCriteris(nom:string){
         let contador = 0;
-        if(this.criteris.length == null){
+        if(this.criteris.length > 0){
             let trobat = true;
             while(contador < this.criteris.length && trobat ){
                 if(this.criteris[contador].nom.toLowerCase() == nom.toLowerCase()) trobat = false;

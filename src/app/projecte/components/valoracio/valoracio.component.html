@@ -3,5 +3,6 @@
         <option *ngFor="let criteri of this.localStorage.getCriteris()">{{criteri.nom}}</option>
     </select>
     <br><label>valoracio: </label><input type="text" formControlName="valoracio">
+    <br><label>valor: </label><input type="number" formControlName="valor">
     <br><button [disabled]="!this.valoracioForm.valid">Inserir</button>
 </form>
