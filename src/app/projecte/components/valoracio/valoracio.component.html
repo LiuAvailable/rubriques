@@ -1,0 +1,7 @@
+<form [formGroup]="valoracioForm" (ngSubmit)="addValoracio()">
+    <label>criteri:</label><select>
+        <option *ngFor="let criteri of this.localStorage.getCriteris()">{{criteri.nom}}</option>
+    </select>
+    <br><label>valoracio: </label><input type="text" formControlName="valoracio">
+    <br><button [disabled]="!this.valoracioForm.valid">Inserir</button>
+</form>

@@ -3,7 +3,7 @@ import { Criteri } from "../criteri/criteri";
 export class LocalStorage{
     criteris:Array<Criteri> = this.getCriteris();
 
-    private getCriteris(){
+    public getCriteris(){
         let item = localStorage.getItem('criteris');
         if(item!=null) return JSON.parse(item);
         else return [];
@@ -15,16 +15,12 @@ export class LocalStorage{
     }
 
     public getCriteri(nom:string){
-        console.log(this.criteris[this.loopInCriteris(nom)-1]);
+        return this.criteris[this.loopInCriteris(nom)-1];
     }
 
     public saveCriteri(nom:string){
-        
-        console.log(this.criteris);
         if(this.criteriExists(nom)){
-            console.log(this.criteris);
             this.criteris.push(new Criteri(nom));
-            console.log(this.criteris);
             this.setCriteris();
         } // TODO: en cas que existeixi remplaça?
     }
