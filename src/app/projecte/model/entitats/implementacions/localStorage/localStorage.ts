@@ -6,7 +6,7 @@ export class LocalStorage{
     private getCriteris(){
         let item = localStorage.getItem('criteris');
         if(item!=null) return JSON.parse(item);
-        else return null;
+        else return [];
     }
     private setCriteris(){
         let string_criteris = JSON.stringify(this.criteris)
@@ -19,10 +19,14 @@ export class LocalStorage{
     }
 
     public saveCriteri(nom:string){
+        
+        console.log(this.criteris);
         if(this.criteriExists(nom)){
+            console.log(this.criteris);
             this.criteris.push(new Criteri(nom));
+            console.log(this.criteris);
             this.setCriteris();
-        }else console.log('existeix');
+        } // TODO: en cas que existeixi remplaça?
     }
     private criteriExists(nom:string){
         if(this.loopInCriteris(nom) == this.criteris.length) return false;
@@ -34,11 +38,13 @@ export class LocalStorage{
     */
     private loopInCriteris(nom:string){
         let contador = 0;
-        let trobat = true;
-        while(contador < this.criteris.length && trobat ){
-            if(this.criteris[contador].nom.toLowerCase() == nom.toLowerCase()) trobat = false;
-            contador++;
-        }
+        if(this.criteris.length == null){
+            let trobat = true;
+            while(contador < this.criteris.length && trobat ){
+                if(this.criteris[contador].nom.toLowerCase() == nom.toLowerCase()) trobat = false;
+                contador++;
+            }
+        }else contador = -1;
         return contador;
     }
 }

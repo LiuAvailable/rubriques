@@ -10,10 +10,28 @@ import { LocalStorage } from '../../model/entitats/implementacions/localStorage/
 })
 export class CriteriComponent implements OnInit {
   localStorage: LocalStorage = new LocalStorage();
-  constructor() { }
+  criteriForm!: FormGroup;
 
+  constructor(private fb:FormBuilder) { }
   ngOnInit(): void {
-    this.localStorage.getCriteri('patata');
-    this.localStorage.saveCriteri('pAtata333');
+    this.criteriForm = this.fb.group({
+      nom:['',
+    {
+      validators:[
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(25)
+      ]
+    }]})
+  }
+  addCriteri(){
+    this.localStorage.saveCriteri(this.criteriForm.get("nom")?.value);
+    this.removeInputValue();
+  }
+  removeInputValue(){
+    let input = document.querySelector('input');
+    if(input != null){
+      input.value = '';
+    }
   }
 }
