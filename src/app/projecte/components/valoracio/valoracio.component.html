@@ -3,7 +3,7 @@
     <option *ngFor="let criteri of this.criterisName">{{criteri.nom}}</option>
 </select>
 <form [formGroup]="valoracioForm" (ngSubmit)="addValoracio()">
-    <br><label>valoracio: </label><input type="text" formControlName="valoracio">
+    <label>valoracio: </label><input type="text" formControlName="valoracio">
     <br><label>valor: </label><input type="number" formControlName="valor">
     <br><button [disabled]="!this.valoracioForm.valid">Inserir</button>
 </form>

@@ -1,0 +1,15 @@
+
+<div id="rubrica">
+    <div id="header">
+        <div class="row">
+            <div class="criteri"></div>
+            <div class="puntuacions" *ngFor="let valor of this.puntuacions">{{valor}}</div>
+        </div>
+    </div>
+    <div class="row" *ngFor="let criteri of this.criteris">
+        <div class="criteri">{{criteri.nom}}</div>
+        <div class="valoracio" *ngFor="let valor of this.puntuacions">
+            <p>{{this.getDescripcio(valor, criteri)}}</p>
+        </div>
+    </div>
+</div>

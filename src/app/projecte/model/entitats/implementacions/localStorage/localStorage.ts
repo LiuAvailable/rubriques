@@ -20,25 +20,17 @@ export class LocalStorage{
 
     public saveCriteri(criteri:Criteri){
         if(this.criteriExists(criteri.nom)){
-            console.log('bbb')
             this.criteris.push(new Criteri(criteri.nom));
             this.setCriteris();
         }else{
-            console.log('aaaa')
-            console.log(criteri.nom)
             let posicio = this.loopInCriteris(criteri.nom)-1;
-            console.log(criteri)
-            console.log(posicio)
-            console.log(this.criteris[posicio])
             this.criteris[posicio] = criteri;
             this.setCriteris()
         }
     }
     private criteriExists(nom:string){
-        console.log('-----')
         console.log(this.loopInCriteris(nom))
         console.log(this.criteris.length)
-        console.log('-----')
         if(this.criteris.length == 0 || this.loopInCriteris(nom) > this.criteris.length) return true;
         else return false;
     }

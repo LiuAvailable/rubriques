@@ -9,8 +9,8 @@ export class Criteri implements ICriteri{
     constructor(nom:string){
         this.nom = nom;
     }
-
-    afegirValoracio(valoracio: IValoracio): void {
-        this.puntuacio[valoracio.valor] = valoracio // Ordeno les valoracions per valor
+    test(){console.log('aaaa')}
+    public addValoracio(valoracio: IValoracio): void {
+        this.puntuacio[valoracio.valor] = valoracio; // Ordeno les valoracions per valor
     }
 }
