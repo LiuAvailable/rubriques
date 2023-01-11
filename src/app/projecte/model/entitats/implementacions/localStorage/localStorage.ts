@@ -62,4 +62,17 @@ export class LocalStorage{
         let array = JSON.stringify(valoracio)
         localStorage.setItem('valoracions', array);
     }
+    
+    public getActive(){
+        let item = localStorage.getItem('actives');
+        if(item!=null) {
+            let array=  JSON.parse(item)
+            return array
+        }
+        else return [];
+    }
+    public saveActive(element:Array<Array<number>>){
+        let array = JSON.stringify(element)
+        localStorage.setItem('actives', array);
+    }
 }
