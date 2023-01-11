@@ -38,6 +38,8 @@ export class ValoracioComponent implements OnInit {
     let valoracio = new Valoracio(this.valoracioForm.get("valoracio")?.value,this.valoracioForm.get("valor")?.value);
     this.addValoracioToCriteri(valoracio)
     this.removeInputValue();
+    //TODO: afegir les valoracions uniques a localStorage per recuperar-les al printar la rubrica
+    valoracio.saveValor(valoracio.valor);
   }
 
   addValoracioToCriteri(valoracio:Valoracio){

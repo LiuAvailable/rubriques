@@ -29,8 +29,6 @@ export class LocalStorage{
         }
     }
     private criteriExists(nom:string){
-        console.log(this.loopInCriteris(nom))
-        console.log(this.criteris.length)
         if(this.criteris.length == 0 || this.loopInCriteris(nom) > this.criteris.length) return true;
         else return false;
     }
@@ -49,5 +47,19 @@ export class LocalStorage{
             if(trobat) contador ++; //si no l'ha trobat suma
         }else contador = -1;
         return contador;
+    }
+
+
+    public getValoracions(){
+        let item = localStorage.getItem('valoracions');
+        if(item!=null) {
+            let array:Array<number> =  JSON.parse(item)
+            return array
+        }
+        else return [];
+    }
+    public saveValoracio(valoracio:Array<number>){
+        let array = JSON.stringify(valoracio)
+        localStorage.setItem('valoracions', array);
     }
 }

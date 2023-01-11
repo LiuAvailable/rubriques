@@ -8,8 +8,8 @@ import { LocalStorage } from '../../model/entitats/implementacions/localStorage/
   styleUrls: ['./rubrica.component.css']
 })
 export class RubricaComponent implements OnInit, AfterViewInit{
-  puntuacions: Array<number> = [1,2,3,4,5,6];
   localStorage:LocalStorage = new LocalStorage();
+  puntuacions: Array<number> = this.localStorage.getValoracions().sort((a, b) => a - b);
   criteris!: Array<Criteri>;
   constructor() {
     this.criteris = this.localStorage.getCriteris();
