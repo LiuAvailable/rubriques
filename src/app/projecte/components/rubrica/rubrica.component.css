@@ -21,3 +21,7 @@
     height: 20px;
 }
 #header .row div:nth-child(1){opacity: 0;}
+.valoracio.active
+{
+    background: #ADFF2F40;
+}
