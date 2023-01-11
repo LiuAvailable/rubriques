@@ -9,7 +9,9 @@
     <div class="row" *ngFor="let criteri of this.criteris">
         <div class="criteri">{{criteri.nom}}</div>
         <div class="valoracio" *ngFor="let valor of this.puntuacions" >
-            <p>{{this.getDescripcio(valor, criteri)}}</p>
+            <p attr.valor-filter="{{this.getValor(valor, criteri)}}">{{this.getDescripcio(valor, criteri)}}</p>
         </div>
     </div>
 </div>
+<button (click)="this.calcMitjana()">Envia</button>
+<br><label id="mitjana"></label>

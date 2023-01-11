@@ -18,7 +18,7 @@ export class RubricaComponent implements OnInit, AfterViewInit{
     this.selectValoracio();
   }
   selectValoracio(){
-    document.querySelectorAll('.valoracio')?.forEach(valoracio => valoracio.addEventListener('click', () =>{
+    document.querySelectorAll(".valoracio:has(p:not([valor-filter='-1']))")?.forEach(valoracio => valoracio.addEventListener('click', () =>{
       this.deleteAllRowActive(valoracio);
       this.setActive(valoracio);
     }))
@@ -38,5 +38,30 @@ export class RubricaComponent implements OnInit, AfterViewInit{
       if(c.valor == valor) paraula = c.descripcio;
     })
     return paraula;
+  }
+  getValor(valor:number, criteri:Criteri){
+    let paraula = -1;
+    criteri.puntuacio.forEach(c => {
+      if(c.valor == valor) paraula = c.valor;
+    })
+    return paraula;
+  }
+
+  calcMitjana(){
+    let seleccions = document.querySelectorAll('.valoracio.active');
+    console.log(seleccions.length)
+    let mitjana = 0;
+    let files = document.querySelectorAll('.row').length-1;
+    if(seleccions.length > 0){
+      seleccions.forEach(seleccio => {
+        let valor = seleccio.querySelector('p')?.getAttribute('valor-filter')
+        if(valor!=null) mitjana = mitjana + parseInt(valor);
+      });
+      let label = document.getElementById('mitjana')
+      if(label != null) label.textContent=(mitjana/files).toString()
+    }else{
+      let label = document.getElementById('mitjana')
+      if(label != null) label.textContent='no hi ha camps seleccionats'
+    }
   }
 }
